@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def epsilon_greedy():
-    print(epsilon)
     r = np.random.rand()
     if  r < epsilon:
         arm = np.random.randint(n_bandits)
@@ -24,7 +23,6 @@ selected_arms = np.zeros(n_iterations, dtype=int)
 
 for i in range(n_iterations):
     arm = epsilon_greedy()
-    print(arm)
     reward = np.random.rand() < true_bandit_probs[arm]
     rewards[i] = reward
     selected_arms[i] = arm
