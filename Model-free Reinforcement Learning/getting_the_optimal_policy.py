@@ -8,7 +8,7 @@ num_states = env.observation_space.n
 num_actions = env.action_space.n
 state, info = env.reset()
 
-with open(r'C:\Users\ASUS TUF\Desktop\Study\ENIT\1A Télécom\PFA\Reinforcement Learning Implementation\Model-free Reinforcement Learning\q_learning_improved_q_value.json', 'r') as json_file:
+with open(r'Model-free Reinforcement Learning\q_learning_improved_q_value.json', 'r') as json_file:
     json_data = json.load(json_file)
 
 Q = np.zeros((num_states, num_actions)) 
