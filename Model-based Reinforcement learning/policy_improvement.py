@@ -1,10 +1,10 @@
 import gymnasium as gym
 import json
-import os
+import timeit
 
 
 env = gym.make("CliffWalking-v0", render_mode = "human")
-file = open("Reinforcement Learning Implementation\\q_values.json", "r")
+file = open("q_values.json", "r")
 Q = json.load(file)
 Q = {tuple(eval(k)):float(v) for k,v in Q.items()}
 
@@ -95,4 +95,7 @@ def policy_iteration():
     
     return policy, v
 
-policy_iteration()
+
+time_taken = timeit.timeit(policy_iteration, number=10)  # Execute the function 10 times
+average_time = time_taken / 10  # Calculate the average time taken per function call
+print("Average time taken:", average_time)

@@ -1,6 +1,7 @@
 import gymnasium as gym 
 import numpy as np
-import json 
+import json
+import timeit 
 
 def update_q_table(state, action, reward, next_state):
     i = np.random.randint(2)
@@ -26,11 +27,18 @@ num_states = env.observation_space.n
 num_actions = env.action_space.n
 
 Q = [np.zeros((num_states, num_actions))]*2
-alpha = 0.5
-gamma = 0.9
+alpha = 0.1
+gamma = 1
 num_episodes = 1000000
 
-double_q_learning_loop(num_episodes)
+
+function_call = lambda: double_q_learning_loop(num_episodes)
+
+# Execute the function call 10 times and calculate the average time taken
+time_taken = timeit.timeit(function_call, number=10)
+average_time = time_taken / 10
+print("Average time taken:", average_time)
+
 final_Q = (Q[0] + Q[1])/2
 json_data = [{f'({row},{col})': final_Q[row][col] for col in range(num_actions)} for row in range(num_states)]
 json.dump(json_data, double_q_learning_improved_q_value_file, indent=4)

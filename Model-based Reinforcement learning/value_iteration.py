@@ -1,5 +1,6 @@
 import gymnasium as gym
 import json
+import timeit
 
 env = gym.make("CliffWalking-v0", render_mode="human")
 terminal_state = 47
@@ -43,4 +44,7 @@ def value_iteration():
     json.dump(v, value_iteration_improved_value_function_file, indent=4)
     return policy, v
 
-value_iteration()
+
+time_taken = timeit.timeit(value_iteration, number=10)  # Execute the function 10 times
+average_time = time_taken / 10  # Calculate the average time taken per function call
+print("Average time taken:", average_time)

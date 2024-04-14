@@ -1,11 +1,7 @@
 import gymnasium as gym
 import numpy as np
 import json
-
-env = gym.make("FrozenLake", render_mode = "rgb_array", is_slippery = True)
-num_states = env.observation_space.n
-num_actions = env.action_space.n
-num_episodes = 1000000
+import timeit
 
 first_visit_mc_q_value_file = open("first_visit_mc_q_value.json", "w")
 every_visit_mc_q_value_file = open("every_visit_mc_q_value.json", "w")
@@ -45,7 +41,7 @@ def first_visit_mc(num_episodes):
     Q[nonzero_counts] = returns_sum[nonzero_counts]/returns_count[nonzero_counts]
     json_data = [{f'({row},{col})': Q[row][col] for col in range(num_actions)} for row in range(num_states)]
     json.dump(json_data, first_visit_mc_q_value_file, indent=4)
-    first_visit_mc_q_value_file.close()
+    # first_visit_mc_q_value_file.close()
     return Q
 
 def every_visit_mc(num_episodes):
@@ -63,8 +59,26 @@ def every_visit_mc(num_episodes):
     Q[nonzero_counts] = returns_sum[nonzero_counts]/returns_count[nonzero_counts]
     json_data = [{f'({row},{col})': Q[row][col] for col in range(num_actions)} for row in range(num_states)]
     json.dump(json_data, every_visit_mc_q_value_file, indent=4)
-    every_visit_mc_q_value_file.close()
+    # every_visit_mc_q_value_file.close()
     return Q
 
-first_visit_mc(num_episodes)
-every_visit_mc(num_episodes)
+
+env = gym.make("FrozenLake", render_mode = "rgb_array", is_slippery = True)
+num_states = env.observation_space.n
+num_actions = env.action_space.n
+num_episodes = 1000000
+
+function_call = lambda: first_visit_mc(num_episodes)
+
+# Execute the function call 10 times and calculate the average time taken
+time_taken = timeit.timeit(function_call, number=10)
+average_time = time_taken / 10
+print("Average time taken:", average_time)
+
+function_call = lambda: every_visit_mc(num_episodes)
+
+# Execute the function call 10 times and calculate the average time taken
+time_taken = timeit.timeit(function_call, number=10)
+average_time = time_taken / 10
+print("Average time taken:", average_time)
+

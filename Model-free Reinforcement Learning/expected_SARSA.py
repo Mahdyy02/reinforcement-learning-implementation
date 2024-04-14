@@ -1,6 +1,7 @@
 import gymnasium as gym
 import numpy as np
 import json
+import timeit
 
 expected_sarsa_improved_q_value_file = open("expected_sarsa_improved_q_value.json", "w")
 
@@ -29,9 +30,15 @@ num_actions = env.action_space.n
 Q = np.zeros((num_states, num_actions))
 alpha = 0.1
 gamma = 1
-num_episodes = 500000
+num_episodes = 1000000
 
-expected_sarsa_loop(num_episodes)
+function_call = lambda: expected_sarsa_loop(num_episodes)
+
+# Execute the function call 10 times and calculate the average time taken
+time_taken = timeit.timeit(function_call, number=10)
+average_time = time_taken / 10
+print("Average time taken:", average_time)
+
 json_data = [{f'({row},{col})': Q[row][col] for col in range(num_actions)} for row in range(num_states)]
 json.dump(json_data, expected_sarsa_improved_q_value_file, indent=4)
 expected_sarsa_improved_q_value_file.close()

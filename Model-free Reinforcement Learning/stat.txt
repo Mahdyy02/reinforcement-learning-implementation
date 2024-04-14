@@ -1,0 +1,7 @@
+SARSA average time taken: 86.74521664999993
+Q-Learning average time taken: 92.39630153999988
+Double Q-learing average time taken: 116.12267960000008
+Expected SARSA average time taken: 121.34834855999979
+First visit Monte-Carlo average time taken: 88.23593846000003
+Every visit Monte-Carlo average time taken: 88.88958186999989
+Q-learning Epsilon Greedy average time taken: 2088.2810207499997
