@@ -5,3 +5,22 @@ Expected SARSA average time taken: 121.34834855999979
 First visit Monte-Carlo average time taken: 88.23593846000003
 Every visit Monte-Carlo average time taken: 88.88958186999989
 Q-learning Epsilon Greedy average time taken: 2088.2810207499997
+
+
+Performance:
+
+We played 10000 games and calculated the average winning time
+
+Random policy average winning time: 1.34%
+SARSA average winning time: 71.043%
+Q-learning average winning time: 0.0%
+Double Q-learning average winning time: 0.0%
+Expected SARSA average winning time: 46.64%
+First visit Monte-Carlo average winning time: 73.72%
+Every visit Monte-Carlo average winning time: 73.11999999999999%
+Q-learning Epsilon Greedy average winning time: 0.0%
+
+
+Q-learning trained on 2000 epsiodes: average winning time: 73.78%
+Double Q-learning trained on 1000 epsiodes: average winning time: 74.28%
+Q-learning Epsilon-greedy average winning time: 72.784%

@@ -40,18 +40,20 @@ num_actions = env.action_space.n
 Q = np.zeros((num_states, num_actions))
 alpha = 0.1
 gamma = 1
-epsilon = 0.9
+epsilon = 1
 epsilon_decay = 0.999
 min_epsilon = 0.01
-num_episodes = 1000000
+num_episodes = 2000
 
 
-function_call = lambda: q_learning_epsilon_greedy_loop(num_episodes)
+q_learning_epsilon_greedy_loop(num_episodes)
 
-# Execute the function call 10 times and calculate the average time taken
-time_taken = timeit.timeit(function_call, number=10)
-average_time = time_taken / 10
-print("Average time taken:", average_time)
+# function_call = lambda: q_learning_epsilon_greedy_loop(num_episodes)
+
+# # Execute the function call 10 times and calculate the average time taken
+# time_taken = timeit.timeit(function_call, number=10)
+# average_time = time_taken / 10
+# print("Average time taken:", average_time)
 
 json_data = [{f'({row},{col})': Q[row][col] for col in range(num_actions)} for row in range(num_states)]
 json.dump(json_data, q_learning_epsilon_greedy_improved_q_value_file, indent=4)

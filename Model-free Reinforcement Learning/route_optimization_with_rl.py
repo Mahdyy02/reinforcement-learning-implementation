@@ -20,9 +20,9 @@ def epsilon_greedy(state):
 max_actions = 100
 num_episodes = 2000
 alpha = 0.1  
-gamma = 1  
-epsilon = 0.9  
-epsilon_decay = 0.999  
+gamma = 1 
+epsilon = 1  
+epsilon_decay = 0.99  
 min_epsilon = 0.01
 
 num_states, num_actions = env.observation_space.n, env.action_space.n
@@ -53,26 +53,31 @@ for episode in range(num_episodes):
 
 policy = {state: np.argmax(q_table[state]) for state in range(num_states)}
 
-state, info = env.reset()
 frames = []
 episode_total_reward = 0
 time_steps = 0
-done = False
+display_episodes = 20
 
-for _ in range(100):
+for epsiode in range(display_episodes):
+
+    done = False
+    state, info = env.reset()
+    frames.append(env.render())
 
     while not done:
-        
-        frames.append(env.render())
-
+    
         action = policy[state]
         next_state, reward, terminated, truncated, info = env.step(action)
         episode_total_reward += reward
+        if state != next_state:
+            frames.append(env.render())
+        else:
+            next_state, info = env.reset()
         state = next_state
         time_steps += 1
 
         done = terminated or truncated
-
+            
 
 
 imageio.mimsave('taxi_agent_behavior.gif', frames, fps=5)

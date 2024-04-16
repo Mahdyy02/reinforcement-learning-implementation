@@ -11,7 +11,7 @@ def epsilon_greedy():
 
 n_bandits = 5
 true_bandit_probs = np.random.rand(n_bandits)
-n_iterations = 50000
+n_iterations = 1000000
 epsilon = 0.99
 min_epsilon = 0.01
 epsilon_decay = 0.999

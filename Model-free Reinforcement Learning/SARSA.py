@@ -3,7 +3,7 @@ import numpy as np
 import json
 import timeit
 
-sarsa_improved_q_value_file = open("sarsa_improved_q_value.json", "w")
+sarsa_improved_q_value_file = open("q_learning_improved_q_value.json", "w")
 
 def update_q_table(state, action, reward, next_state, next_action):
     old_value = Q[state, action]

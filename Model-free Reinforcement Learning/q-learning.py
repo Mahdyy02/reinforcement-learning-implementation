@@ -30,7 +30,7 @@ num_actions = env.action_space.n
 Q = np.zeros((num_states, num_actions))
 alpha = 0.1
 gamma = 1
-num_episodes = 1000000
+num_episodes = 2000
 
 
 function_call = lambda: q_learning_loop(num_episodes)

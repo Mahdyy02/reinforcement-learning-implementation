@@ -3,8 +3,6 @@ import numpy as np
 import json
 import timeit
 
-first_visit_mc_q_value_file = open("first_visit_mc_q_value.json", "w")
-every_visit_mc_q_value_file = open("every_visit_mc_q_value.json", "w")
 
 def generate_episode():
     episode = []
@@ -22,6 +20,8 @@ def generate_episode():
     return episode
 
 def first_visit_mc(num_episodes):
+
+    first_visit_mc_q_value_file = open("first_visit_mc_q_value.json", "w")
 
     Q = np.zeros((num_states, num_actions))
     returns_sum = np.zeros((num_states, num_actions))
@@ -45,6 +45,9 @@ def first_visit_mc(num_episodes):
     return Q
 
 def every_visit_mc(num_episodes):
+
+    every_visit_mc_q_value_file = open("every_visit_mc_q_value.json", "w")
+
     Q = np.zeros((num_states, num_actions))
     returns_sum = np.zeros((num_states, num_actions))
     returns_count = np.zeros((num_states, num_actions))
