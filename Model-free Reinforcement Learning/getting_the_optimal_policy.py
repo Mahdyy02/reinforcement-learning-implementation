@@ -9,7 +9,7 @@ num_actions = env.action_space.n
 state, info = env.reset()
 
 training_algo_file_name = "q_learning_epsilon_greedy_improved_q_value"
-with open(fr'C:\Users\ASUS TUF\Desktop\Study\ENIT\1A Télécom\PFA\Reinforcement Learning Implementation\Model-free Reinforcement Learning\{training_algo_file_name}.json', 'r') as json_file:
+with open(fr'Model-free Reinforcement Learning\{training_algo_file_name}.json', 'r') as json_file:
     json_data = json.load(json_file)
 
 Q = np.zeros((num_states, num_actions)) 
